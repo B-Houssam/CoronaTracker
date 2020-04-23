@@ -45,6 +45,7 @@ flutter:
   assets:
    - assets/undraw_doctor_kw5l.png
    - assets/17949-corona-doctor.json
+   - assets/home.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
