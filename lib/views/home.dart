@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -40,15 +42,30 @@ class _HomeState extends State<Home> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20, bottom: 20.0),
-                      child: Text(
-                        "We can defeat coronavirus",
-                        style: TextStyle(
-                          fontFamily: 'skranji',
-                          fontSize: 19,
-                          color: Colors.black,
-                        ),
+                    Container(
+                      child: Stack(
+                        alignment: Alignment.centerLeft,
+                        children: <Widget>[
+                          Positioned(
+                            child: Container(
+                              height: 100,
+                              width: 100,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0XFFffebcd),
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Text(
+                              "#WeCanDefeatCoronavirus",
+                              style: GoogleFonts.anton(
+                                fontSize: 21,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                     Row(
@@ -56,14 +73,10 @@ class _HomeState extends State<Home> {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(bottom: 45.0),
+                          padding: const EdgeInsets.only(bottom: 35.0),
                           child: Text(
                             "Stay Safe\nStay at home",
-                            style: TextStyle(
-                              fontFamily: 'skranji',
-                              fontSize: 17,
-                              color: Colors.black,
-                            ),
+                            style: GoogleFonts.playfairDisplay(fontSize: 17),
                           ),
                         ),
                         Container(
@@ -102,6 +115,9 @@ class _HomeState extends State<Home> {
               ),
             ];
           },
+
+          //------------------//
+
           body: Container(
             decoration: BoxDecoration(
                 color: Colors.white,
@@ -120,7 +136,64 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.circular(20),
                       color: Color(0XFFEBEBF1),
                     ),
-                    height: MediaQuery.of(context).size.height * .15,
+                    height: MediaQuery.of(context).size.height * .14,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * .07,
+                            width: MediaQuery.of(context).size.height * .07,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Color(0XFF5BC0DE),
+                            ),
+                            child: Icon(
+                              FontAwesomeIcons.shieldVirus,
+                              color: Colors.white,
+                              size: 30,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height * .14,
+                          width: MediaQuery.of(context).size.width * .45,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: <Widget>[
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 10.0),
+                                child: Text(
+                                  "Coronavirus-2019",
+                                  style: GoogleFonts.roboto(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ),
+                              Text(
+                                "World Health Organisation's WHO official website",
+                                style: GoogleFonts.roboto(
+                                  color: Colors.grey[500],
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          height: MediaQuery.of(context).size.height * .14,
+                          width: MediaQuery.of(context).size.height * .08,
+                          child: Icon(
+                            Icons.arrow_forward_ios,
+                            color: Colors.grey[500],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Padding(
@@ -139,6 +212,25 @@ class _HomeState extends State<Home> {
                               borderRadius: BorderRadius.circular(20),
                               color: Color(0XFF5BC0DE),
                             ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(
+                                  FontAwesomeIcons.headSideCough,
+                                  color: Colors.white,
+                                  size: 35,
+                                ),
+                                Text(
+                                  "\nSymptoms",
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.lato(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 17,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                         Padding(padding: EdgeInsets.symmetric(horizontal: 6)),
@@ -148,15 +240,63 @@ class _HomeState extends State<Home> {
                             borderRadius: BorderRadius.circular(20),
                             color: Color(0XFFcd950c),
                           ),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(
+                                FontAwesomeIcons.stethoscope,
+                                color: Colors.white,
+                                size: 35,
+                              ),
+                              Text(
+                                "\nPrecaution",
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.lato(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                         Padding(padding: EdgeInsets.symmetric(horizontal: 6)),
                         Padding(
                           padding: const EdgeInsets.only(right: 20.0),
                           child: Container(
+                            alignment: Alignment.center,
                             width: MediaQuery.of(context).size.width * .35,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: Color(0XFFee3B3B),
+                              color: Color(0XFF07ac0e),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(
+                                  FontAwesomeIcons.phoneAlt,
+                                  color: Colors.white,
+                                  size: 35,
+                                ),
+                                Text(
+                                  "\nGreen number",
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.lato(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                Text(
+                                  "3030",
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.lato(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 15,
+                                  ),
+                                )
+                              ],
                             ),
                           ),
                         ),
