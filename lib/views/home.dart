@@ -61,7 +61,7 @@ class _HomeState extends State<Home> {
                             child: Text(
                               "#WeCanDefeatCoronavirus",
                               style: GoogleFonts.anton(
-                                fontSize: 21,
+                                fontSize: 23,
                               ),
                             ),
                           ),
@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
                           padding: const EdgeInsets.only(bottom: 35.0),
                           child: Text(
                             "Stay Safe\nStay at home",
-                            style: GoogleFonts.playfairDisplay(fontSize: 17),
+                            style: GoogleFonts.quicksand(fontSize: 17),
                           ),
                         ),
                         Container(
@@ -359,6 +359,144 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                 ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(left: 25.0, top: 30, right: 25),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * .4,
+                    child: Column(
+                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: <Widget>[
+                              Text(
+                                "Today's statistics",
+                                style: TextStyle(
+                                  fontFamily: 'robotoBlack',
+                                  color: Colors.black,
+                                  fontSize: 18,
+                                ),
+                              ),
+                              Padding(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 10)),
+                              Text(
+                                DateTime.now().day.toString() +
+                                    '/' +
+                                    DateTime.now().month.toString() +
+                                    '/' +
+                                    DateTime.now().year.toString(),
+                                style: TextStyle(
+                                  color: Colors.grey[400],
+                                  fontFamily: 'robotoMed',
+                                  fontSize: 13,
+                                ),
+                              ),
+                            ],
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Color(0XFFEBEBF1),
+                            ),
+                            height: MediaQuery.of(context).size.height * .08,
+                            alignment: Alignment.center,
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * .04,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.grey,
+                            ),
+                            height: MediaQuery.of(context).size.height * .2,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text("Active"),
+                                    Row(
+                                      children: <Widget>[
+                                        Text("8976"),
+                                        Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5)),
+                                        Container(
+                                          width: 20,
+                                          height: 20,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            color: Color(0XFFcd950c),
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text("Recovered"),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: <Widget>[
+                                        Text("8976"),
+                                        Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5)),
+                                        Container(
+                                          width: 20,
+                                          height: 20,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            color: Color(0XFF5BC0DE),
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text("Deaths"),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: <Widget>[
+                                        Text("8976"),
+                                        Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5)),
+                                        Container(
+                                          width: 20,
+                                          height: 20,
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            color: Color(0XFFf50057),
+                                          ),
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                )
+                              ],
+                            ),
+                          )
+                        ]),
+                  ),
+                )
               ],
             ),
           )),
