@@ -1,3 +1,4 @@
+import 'package:fcharts/fcharts.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +11,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  static const myData = [
+    ["data", "12"],
+    ["B", "2"],
+    ["C", "4"],
+    ["D", "2"],
+    ["E", "12"],
+    ["F", "4"],
+    ["G", "6"],
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -128,7 +139,7 @@ class _HomeState extends State<Home> {
             child: ScrollConfiguration(
               behavior: MyBehavior(),
               child: ListView(
-                //physics: BouncingScrollPhysics(),
+                physics: BouncingScrollPhysics(),
                 children: <Widget>[
                   Padding(
                     padding:
@@ -176,7 +187,7 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                                 Text(
-                                  "World Health Organisation's WHO official website",
+                                  "Visit World Health Organisation's WHO official website",
                                   style: GoogleFonts.roboto(
                                     color: Colors.grey[500],
                                     fontSize: 13,
@@ -308,95 +319,20 @@ class _HomeState extends State<Home> {
                   ),
                   Padding(
                     padding:
-                        const EdgeInsets.only(left: 25.0, top: 20, right: 25),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * .2,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                'Training Video',
-                                style: TextStyle(
-                                  fontFamily: 'robotoBlack',
-                                  color: Colors.black,
-                                  fontSize: 17,
-                                ),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Text(
-                                    'More',
-                                    style: TextStyle(
-                                      color: Colors.grey[600],
-                                      fontFamily: 'robotoReg',
-                                    ),
-                                  ),
-                                  Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 3)),
-                                  Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: Colors.grey[700],
-                                    size: 15,
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(25),
-                                  bottomLeft: Radius.circular(25),
-                                  bottomRight: Radius.circular(25)),
-                              color: Color(0XFFEBEBF1),
-                            ),
-                            height: MediaQuery.of(context).size.height * .165,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding:
                         const EdgeInsets.only(left: 25.0, top: 30, right: 25),
                     child: Container(
-                      height: MediaQuery.of(context).size.height * .2,
+                      height: MediaQuery.of(context).size.height * .22,
                       child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  "World's Today statistics",
-                                  style: TextStyle(
-                                    fontFamily: 'robotoBlack',
-                                    color: Colors.black,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                                Padding(
-                                    padding:
-                                        EdgeInsets.symmetric(horizontal: 10)),
-                                Text(
-                                  DateTime.now().day.toString() +
-                                      '/' +
-                                      DateTime.now().month.toString() +
-                                      '/' +
-                                      DateTime.now().year.toString(),
-                                  style: TextStyle(
-                                    color: Colors.grey[400],
-                                    fontFamily: 'robotoMed',
-                                    fontSize: 13,
-                                  ),
-                                ),
-                              ],
+                            Text(
+                              "Algeria's Overall statistics",
+                              style: TextStyle(
+                                fontFamily: 'robotoBlack',
+                                color: Colors.black,
+                                fontSize: 18,
+                              ),
                             ),
                             Container(
                               height: MediaQuery.of(context).size.height * .05,
@@ -464,8 +400,8 @@ class _HomeState extends State<Home> {
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 5)),
                                           Container(
-                                            width: 20,
-                                            height: 20,
+                                            width: 15,
+                                            height: 15,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
@@ -500,8 +436,8 @@ class _HomeState extends State<Home> {
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 5)),
                                           Container(
-                                            width: 20,
-                                            height: 20,
+                                            width: 15,
+                                            height: 15,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
@@ -534,8 +470,8 @@ class _HomeState extends State<Home> {
                                               padding: EdgeInsets.symmetric(
                                                   horizontal: 5)),
                                           Container(
-                                            width: 20,
-                                            height: 20,
+                                            width: 15,
+                                            height: 15,
                                             decoration: BoxDecoration(
                                               borderRadius:
                                                   BorderRadius.circular(5),
@@ -553,11 +489,108 @@ class _HomeState extends State<Home> {
                     ),
                   ),
                   Padding(
-                      padding:
-                          const EdgeInsets.only(left: 25.0, top: 30, right: 25),
-                      child: Container(
-                        height: MediaQuery.of(context).size.height * .2,
-                      ))
+                    padding: const EdgeInsets.only(left: 25.0, right: 25),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * .4,
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Text(
+                              "Cases Progression",
+                              style: TextStyle(
+                                fontFamily: 'robotoBlack',
+                                color: Colors.black,
+                                fontSize: 18,
+                              ),
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.height * .3,
+                              child: LineChart(
+                                lines: [
+                                  new Line<List<String>, String, String>(
+                                    data: myData,
+                                    curve: LineCurves.linear,
+                                    fill: PaintOptions.fill(
+                                      color: Colors.amber[50],
+                                    ),
+                                    marker: MarkerOptions(
+                                        size: 7,
+                                        shape: MarkerShapes.circle,
+                                        paint: PaintOptions.fill(
+                                          color: Color(0XFF5BC0DE),
+                                        )),
+                                    stroke: PaintOptions.stroke(
+                                      color: Color(0XFFcd950c),
+                                      strokeWidth: 5,
+                                    ),
+                                    xFn: (datum) => datum[0],
+                                    yFn: (datum) => datum[1],
+                                  ),
+                                ],
+                                chartPadding: new EdgeInsets.fromLTRB(
+                                    30.0, 10.0, 10.0, 30.0),
+                              ),
+                            )
+                          ]),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 25.0, top: 20, right: 25, bottom: 20),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * .2,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                'Training Video',
+                                style: TextStyle(
+                                  fontFamily: 'robotoBlack',
+                                  color: Colors.black,
+                                  fontSize: 17,
+                                ),
+                              ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                    'More',
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontFamily: 'robotoReg',
+                                    ),
+                                  ),
+                                  Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 3)),
+                                  Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: Colors.grey[700],
+                                    size: 15,
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(25),
+                                  bottomLeft: Radius.circular(25),
+                                  bottomRight: Radius.circular(25)),
+                              color: Color(0XFFEBEBF1),
+                            ),
+                            height: MediaQuery.of(context).size.height * .165,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
