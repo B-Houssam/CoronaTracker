@@ -125,103 +125,133 @@ class _HomeState extends State<Home> {
                   topLeft: Radius.circular(35),
                   topRight: Radius.circular(35),
                 )),
-            child: ListView(
-              physics: BouncingScrollPhysics(),
-              children: <Widget>[
-                Padding(
-                  padding:
-                      const EdgeInsets.only(right: 25.0, left: 25, top: 20),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: Color(0XFFEBEBF1),
-                    ),
-                    height: MediaQuery.of(context).size.height * .14,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Container(
-                            height: MediaQuery.of(context).size.height * .07,
-                            width: MediaQuery.of(context).size.height * .07,
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Color(0XFF5BC0DE),
-                            ),
-                            child: Icon(
-                              FontAwesomeIcons.shieldVirus,
-                              color: Colors.white,
-                              size: 30,
+            child: ScrollConfiguration(
+              behavior: MyBehavior(),
+              child: ListView(
+                //physics: BouncingScrollPhysics(),
+                children: <Widget>[
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(right: 25.0, left: 25, top: 20),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: Color(0XFFEBEBF1),
+                      ),
+                      height: MediaQuery.of(context).size.height * .14,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * .07,
+                              width: MediaQuery.of(context).size.height * .07,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color(0XFF5BC0DE),
+                              ),
+                              child: Icon(
+                                FontAwesomeIcons.shieldVirus,
+                                color: Colors.white,
+                                size: 30,
+                              ),
                             ),
                           ),
-                        ),
-                        Container(
-                          height: MediaQuery.of(context).size.height * .14,
-                          width: MediaQuery.of(context).size.width * .45,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: <Widget>[
-                              Padding(
-                                padding: const EdgeInsets.only(bottom: 10.0),
-                                child: Text(
-                                  "Coronavirus-2019",
-                                  style: GoogleFonts.roboto(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 17,
+                          Container(
+                            height: MediaQuery.of(context).size.height * .14,
+                            width: MediaQuery.of(context).size.width * .45,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.only(bottom: 10.0),
+                                  child: Text(
+                                    "Coronavirus-2019",
+                                    style: GoogleFonts.roboto(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              Text(
-                                "World Health Organisation's WHO official website",
-                                style: GoogleFonts.roboto(
-                                  color: Colors.grey[500],
-                                  fontSize: 13,
+                                Text(
+                                  "World Health Organisation's WHO official website",
+                                  style: GoogleFonts.roboto(
+                                    color: Colors.grey[500],
+                                    fontSize: 13,
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                        Container(
-                          alignment: Alignment.center,
-                          height: MediaQuery.of(context).size.height * .14,
-                          width: MediaQuery.of(context).size.height * .08,
-                          child: Icon(
-                            Icons.arrow_forward_ios,
-                            color: Colors.grey[500],
-                          ),
-                        )
-                      ],
+                          Container(
+                            alignment: Alignment.center,
+                            height: MediaQuery.of(context).size.height * .14,
+                            width: MediaQuery.of(context).size.height * .08,
+                            child: Icon(
+                              Icons.arrow_forward_ios,
+                              color: Colors.grey[500],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(top: 40, bottom: 20),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * .2,
-                    child: ListView(
-                      physics: BouncingScrollPhysics(),
-                      scrollDirection: Axis.horizontal,
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: Container(
+                  Padding(
+                    padding: EdgeInsets.only(top: 40, bottom: 20),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * .2,
+                      child: ListView(
+                        physics: BouncingScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * .35,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Color(0XFF5BC0DE),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    FontAwesomeIcons.headSideCough,
+                                    color: Colors.white,
+                                    size: 35,
+                                  ),
+                                  Text(
+                                    "\nSymptoms",
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.lato(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(padding: EdgeInsets.symmetric(horizontal: 6)),
+                          Container(
                             width: MediaQuery.of(context).size.width * .35,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: Color(0XFF5BC0DE),
+                              color: Color(0XFFcd950c),
                             ),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
                                 Icon(
-                                  FontAwesomeIcons.headSideCough,
+                                  FontAwesomeIcons.stethoscope,
                                   color: Colors.white,
                                   size: 35,
                                 ),
                                 Text(
-                                  "\nSymptoms",
+                                  "\nPrecaution",
                                   textAlign: TextAlign.center,
                                   style: GoogleFonts.lato(
                                     color: Colors.white,
@@ -232,272 +262,304 @@ class _HomeState extends State<Home> {
                               ],
                             ),
                           ),
-                        ),
-                        Padding(padding: EdgeInsets.symmetric(horizontal: 6)),
-                        Container(
-                          width: MediaQuery.of(context).size.width * .35,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(20),
-                            color: Color(0XFFcd950c),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                FontAwesomeIcons.stethoscope,
-                                color: Colors.white,
-                                size: 35,
+                          Padding(padding: EdgeInsets.symmetric(horizontal: 6)),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 20.0),
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: MediaQuery.of(context).size.width * .35,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Color(0XFF07ac0e),
                               ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: <Widget>[
+                                  Icon(
+                                    FontAwesomeIcons.phoneAlt,
+                                    color: Colors.white,
+                                    size: 35,
+                                  ),
+                                  Text(
+                                    "\nGreen number",
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.lato(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                    ),
+                                  ),
+                                  Text(
+                                    "3030",
+                                    textAlign: TextAlign.center,
+                                    style: GoogleFonts.lato(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 15,
+                                    ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 25.0, top: 20, right: 25),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * .2,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
                               Text(
-                                "\nPrecaution",
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.lato(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
+                                'Training Video',
+                                style: TextStyle(
+                                  fontFamily: 'robotoBlack',
+                                  color: Colors.black,
                                   fontSize: 17,
                                 ),
                               ),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Text(
+                                    'More',
+                                    style: TextStyle(
+                                      color: Colors.grey[600],
+                                      fontFamily: 'robotoReg',
+                                    ),
+                                  ),
+                                  Padding(
+                                      padding:
+                                          EdgeInsets.symmetric(horizontal: 3)),
+                                  Icon(
+                                    Icons.arrow_forward_ios,
+                                    color: Colors.grey[700],
+                                    size: 15,
+                                  ),
+                                ],
+                              )
                             ],
                           ),
-                        ),
-                        Padding(padding: EdgeInsets.symmetric(horizontal: 6)),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: MediaQuery.of(context).size.width * .35,
+                          Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Color(0XFF07ac0e),
+                              borderRadius: BorderRadius.only(
+                                  topRight: Radius.circular(25),
+                                  bottomLeft: Radius.circular(25),
+                                  bottomRight: Radius.circular(25)),
+                              color: Color(0XFFEBEBF1),
                             ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                Icon(
-                                  FontAwesomeIcons.phoneAlt,
-                                  color: Colors.white,
-                                  size: 35,
-                                ),
-                                Text(
-                                  "\nGreen number",
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.lato(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                                Text(
-                                  "3030",
-                                  textAlign: TextAlign.center,
-                                  style: GoogleFonts.lato(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                  ),
-                                )
-                              ],
-                            ),
+                            height: MediaQuery.of(context).size.height * .165,
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 25.0, top: 20, right: 25),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * .2,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 25.0, top: 30, right: 25),
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * .2,
+                      child: Column(
+                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
-                            Text(
-                              'Training Video',
-                              style: TextStyle(
-                                fontFamily: 'robotoBlack',
-                                color: Colors.black,
-                                fontSize: 17,
-                              ),
-                            ),
                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'More',
+                                  "World's Today statistics",
                                   style: TextStyle(
-                                    color: Colors.grey[600],
-                                    fontFamily: 'robotoReg',
+                                    fontFamily: 'robotoBlack',
+                                    color: Colors.black,
+                                    fontSize: 18,
                                   ),
                                 ),
                                 Padding(
                                     padding:
-                                        EdgeInsets.symmetric(horizontal: 3)),
-                                Icon(
-                                  Icons.arrow_forward_ios,
-                                  color: Colors.grey[700],
-                                  size: 15,
+                                        EdgeInsets.symmetric(horizontal: 10)),
+                                Text(
+                                  DateTime.now().day.toString() +
+                                      '/' +
+                                      DateTime.now().month.toString() +
+                                      '/' +
+                                      DateTime.now().year.toString(),
+                                  style: TextStyle(
+                                    color: Colors.grey[400],
+                                    fontFamily: 'robotoMed',
+                                    fontSize: 13,
+                                  ),
                                 ),
                               ],
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.height * .05,
+                              alignment: Alignment.center,
+                              child: Container(
+                                height:
+                                    MediaQuery.of(context).size.height * .02,
+                                child: Row(
+                                  children: <Widget>[
+                                    Container(
+                                      width: toChart(context, 876, 1023),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Color(0XFFcd950c),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 3,
+                                    ),
+                                    Container(
+                                      width: toChart(context, 128, 1023),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Color(0XFF5BC0DE),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 3,
+                                    ),
+                                    Container(
+                                      width: toChart(context, 19, 1023),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(5),
+                                        color: Color(0XFFf50057),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              height: MediaQuery.of(context).size.height * .12,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text("Active",
+                                          style: GoogleFonts.roboto(
+                                            color: Colors.grey[500],
+                                            fontWeight: FontWeight.bold,
+                                          )),
+                                      Row(
+                                        children: <Widget>[
+                                          Text("876",
+                                              style: GoogleFonts.roboto(
+                                                color: Colors.grey[500],
+                                                fontWeight: FontWeight.bold,
+                                              )),
+                                          Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 5)),
+                                          Container(
+                                            width: 20,
+                                            height: 20,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: Color(0XFFcd950c),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text(
+                                        "Recovered",
+                                        style: GoogleFonts.roboto(
+                                          color: Colors.grey[500],
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: <Widget>[
+                                          Text("128",
+                                              style: GoogleFonts.roboto(
+                                                color: Colors.grey[500],
+                                                fontWeight: FontWeight.bold,
+                                              )),
+                                          Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 5)),
+                                          Container(
+                                            width: 20,
+                                            height: 20,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: Color(0XFF5BC0DE),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: <Widget>[
+                                      Text("Deaths",
+                                          style: GoogleFonts.roboto(
+                                            color: Colors.grey[500],
+                                            fontWeight: FontWeight.bold,
+                                          )),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: <Widget>[
+                                          Text("19",
+                                              style: GoogleFonts.roboto(
+                                                color: Colors.grey[500],
+                                                fontWeight: FontWeight.bold,
+                                              )),
+                                          Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 5)),
+                                          Container(
+                                            width: 20,
+                                            height: 20,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: Color(0XFFf50057),
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                    ],
+                                  )
+                                ],
+                              ),
                             )
-                          ],
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.only(
-                                topRight: Radius.circular(25),
-                                bottomLeft: Radius.circular(25),
-                                bottomRight: Radius.circular(25)),
-                            color: Color(0XFFEBEBF1),
-                          ),
-                          height: MediaQuery.of(context).size.height * .165,
-                        ),
-                      ],
+                          ]),
                     ),
                   ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 25.0, top: 30, right: 25),
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * .4,
-                    child: Column(
-                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: <Widget>[
-                              Text(
-                                "Today's statistics",
-                                style: TextStyle(
-                                  fontFamily: 'robotoBlack',
-                                  color: Colors.black,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 10)),
-                              Text(
-                                DateTime.now().day.toString() +
-                                    '/' +
-                                    DateTime.now().month.toString() +
-                                    '/' +
-                                    DateTime.now().year.toString(),
-                                style: TextStyle(
-                                  color: Colors.grey[400],
-                                  fontFamily: 'robotoMed',
-                                  fontSize: 13,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Color(0XFFEBEBF1),
-                            ),
-                            height: MediaQuery.of(context).size.height * .08,
-                            alignment: Alignment.center,
-                            child: Container(
-                              height: MediaQuery.of(context).size.height * .04,
-                              color: Colors.black,
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              color: Colors.grey,
-                            ),
-                            height: MediaQuery.of(context).size.height * .2,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Text("Active"),
-                                    Row(
-                                      children: <Widget>[
-                                        Text("8976"),
-                                        Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 5)),
-                                        Container(
-                                          width: 20,
-                                          height: 20,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: Color(0XFFcd950c),
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Text("Recovered"),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: <Widget>[
-                                        Text("8976"),
-                                        Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 5)),
-                                        Container(
-                                          width: 20,
-                                          height: 20,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: Color(0XFF5BC0DE),
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Text("Deaths"),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: <Widget>[
-                                        Text("8976"),
-                                        Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: 5)),
-                                        Container(
-                                          width: 20,
-                                          height: 20,
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(5),
-                                            color: Color(0XFFf50057),
-                                          ),
-                                        )
-                                      ],
-                                    )
-                                  ],
-                                )
-                              ],
-                            ),
-                          )
-                        ]),
-                  ),
-                )
-              ],
+                  Padding(
+                      padding:
+                          const EdgeInsets.only(left: 25.0, top: 30, right: 25),
+                      child: Container(
+                        height: MediaQuery.of(context).size.height * .2,
+                      ))
+                ],
+              ),
             ),
           )),
     );
@@ -518,13 +580,27 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
   }
 
   @override
-  double get maxExtent => 250;
+  double get maxExtent => 240;
 
   @override
-  double get minExtent => 250;
+  double get minExtent => 240;
 
   @override
   bool shouldRebuild(SliverPersistentHeaderDelegate oldDelegate) {
     return false;
+  }
+}
+
+double toChart(BuildContext context, int nb, int nbAll) {
+  double allWidth = MediaQuery.of(context).size.width - 56;
+  double res = (nb * 100) / nbAll;
+  return res * (allWidth) / 100;
+}
+
+class MyBehavior extends ScrollBehavior {
+  @override
+  Widget buildViewportChrome(
+      BuildContext context, Widget child, AxisDirection axisDirection) {
+    return child;
   }
 }

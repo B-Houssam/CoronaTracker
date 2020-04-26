@@ -24,6 +24,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
-//0XFFFFEFD9
-//0XFFFFDDB0
