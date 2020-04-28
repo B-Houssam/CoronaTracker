@@ -2,6 +2,7 @@ import 'package:fcharts/fcharts.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -144,68 +145,76 @@ class _HomeState extends State<Home> {
                   Padding(
                     padding:
                         const EdgeInsets.only(right: 25.0, left: 25, top: 20),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20),
-                        color: Color(0XFFEBEBF1),
-                      ),
-                      height: MediaQuery.of(context).size.height * .14,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Container(
-                              height: MediaQuery.of(context).size.height * .07,
-                              width: MediaQuery.of(context).size.height * .07,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Color(0XFF5BC0DE),
-                              ),
-                              child: Icon(
-                                FontAwesomeIcons.shieldVirus,
-                                color: Colors.white,
-                                size: 30,
+                    child: GestureDetector(
+                      onTap: () {
+                        _launchUrl(
+                            'https://www.who.int/fr/emergencies/diseases/novel-coronavirus-2019');
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: Color(0XFFEBEBF1),
+                        ),
+                        height: MediaQuery.of(context).size.height * .14,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                height:
+                                    MediaQuery.of(context).size.height * .07,
+                                width: MediaQuery.of(context).size.height * .07,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color(0XFF5BC0DE),
+                                ),
+                                child: Icon(
+                                  FontAwesomeIcons.shieldVirus,
+                                  color: Colors.white,
+                                  size: 30,
+                                ),
                               ),
                             ),
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * .14,
-                            width: MediaQuery.of(context).size.width * .45,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.only(bottom: 10.0),
-                                  child: Text(
-                                    "Coronavirus-2019",
-                                    style: GoogleFonts.roboto(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17,
+                            Container(
+                              height: MediaQuery.of(context).size.height * .14,
+                              width: MediaQuery.of(context).size.width * .45,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: <Widget>[
+                                  Padding(
+                                    padding:
+                                        const EdgeInsets.only(bottom: 10.0),
+                                    child: Text(
+                                      "Coronavirus-2019",
+                                      style: GoogleFonts.roboto(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 17,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Text(
-                                  "Visit World Health Organisation's WHO official website",
-                                  style: GoogleFonts.roboto(
-                                    color: Colors.grey[500],
-                                    fontSize: 13,
+                                  Text(
+                                    "Visit World Health Organisation's WHO official website",
+                                    style: GoogleFonts.roboto(
+                                      color: Colors.grey[500],
+                                      fontSize: 13,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            height: MediaQuery.of(context).size.height * .14,
-                            width: MediaQuery.of(context).size.height * .08,
-                            child: Icon(
-                              FontAwesomeIcons.externalLinkAlt,
-                              color: Colors.grey[500],
-                            ),
-                          )
-                        ],
+                            Container(
+                              alignment: Alignment.center,
+                              height: MediaQuery.of(context).size.height * .14,
+                              width: MediaQuery.of(context).size.height * .08,
+                              child: Icon(
+                                FontAwesomeIcons.externalLinkAlt,
+                                color: Colors.grey[500],
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -497,7 +506,7 @@ class _HomeState extends State<Home> {
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: <Widget>[
                             Text(
-                              "Cases Progression",
+                              "Active cases Progression",
                               style: TextStyle(
                                 fontFamily: 'robotoBlack',
                                 color: Colors.black,
@@ -556,79 +565,90 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                               ]),
-                          Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(25),
-                                  bottomLeft: Radius.circular(25),
-                                  bottomRight: Radius.circular(25),
-                                  topLeft: Radius.circular(25)),
-                              color: Color(0XFFEBEBF1),
-                            ),
-                            height: MediaQuery.of(context).size.height * .14,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                    height: MediaQuery.of(context).size.height *
-                                        .07,
-                                    width: MediaQuery.of(context).size.height *
-                                        .07,
-                                    decoration: BoxDecoration(
-                                      shape: BoxShape.circle,
-                                      color: Color(0XFF5BC0DE),
-                                    ),
-                                    child: Icon(
-                                      FontAwesomeIcons.video,
-                                      color: Colors.white,
-                                      size: 28,
+                          GestureDetector(
+                            onTap: () {
+                              _launchUrl(
+                                  'https://www.youtube.com/channel/UCDnssLRZPVLCecqun-V4AzQ');
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(25),
+                                    bottomLeft: Radius.circular(25),
+                                    bottomRight: Radius.circular(25),
+                                    topLeft: Radius.circular(25)),
+                                color: Color(0XFFEBEBF1),
+                              ),
+                              height: MediaQuery.of(context).size.height * .14,
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: <Widget>[
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              .07,
+                                      width:
+                                          MediaQuery.of(context).size.height *
+                                              .07,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        color: Color(0XFF5BC0DE),
+                                      ),
+                                      child: Icon(
+                                        FontAwesomeIcons.video,
+                                        color: Colors.white,
+                                        size: 28,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * .14,
-                                  width: MediaQuery.of(context).size.width * .5,
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: <Widget>[
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 10.0),
-                                        child: Text(
-                                          "Safety and Health topics",
-                                          style: GoogleFonts.roboto(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16,
+                                  Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        .14,
+                                    width:
+                                        MediaQuery.of(context).size.width * .5,
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: <Widget>[
+                                        Padding(
+                                          padding: const EdgeInsets.only(
+                                              bottom: 10.0),
+                                          child: Text(
+                                            "Safety and Health topics",
+                                            style: GoogleFonts.roboto(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16,
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                      Text(
-                                        "Watch videos to get the latest safety mesures about this pandemic",
-                                        style: GoogleFonts.roboto(
-                                          color: Colors.grey[500],
-                                          fontSize: 13,
+                                        Text(
+                                          "Watch videos to get the latest safety mesures about this pandemic",
+                                          style: GoogleFonts.roboto(
+                                            color: Colors.grey[500],
+                                            fontSize: 13,
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                  alignment: Alignment.center,
-                                  height:
-                                      MediaQuery.of(context).size.height * .14,
-                                  width:
-                                      MediaQuery.of(context).size.height * .08,
-                                  child: Icon(
-                                    FontAwesomeIcons.externalLinkAlt,
-                                    color: Colors.grey[500],
-                                  ),
-                                )
-                              ],
+                                  Container(
+                                    alignment: Alignment.center,
+                                    height: MediaQuery.of(context).size.height *
+                                        .14,
+                                    width: MediaQuery.of(context).size.height *
+                                        .08,
+                                    child: Icon(
+                                      FontAwesomeIcons.externalLinkAlt,
+                                      color: Colors.grey[500],
+                                    ),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -679,5 +699,13 @@ class MyBehavior extends ScrollBehavior {
   Widget buildViewportChrome(
       BuildContext context, Widget child, AxisDirection axisDirection) {
     return child;
+  }
+}
+
+_launchUrl(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }
