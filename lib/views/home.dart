@@ -201,7 +201,7 @@ class _HomeState extends State<Home> {
                             height: MediaQuery.of(context).size.height * .14,
                             width: MediaQuery.of(context).size.height * .08,
                             child: Icon(
-                              Icons.arrow_forward_ios,
+                              FontAwesomeIcons.externalLinkAlt,
                               color: Colors.grey[500],
                             ),
                           )
@@ -539,53 +539,97 @@ class _HomeState extends State<Home> {
                     padding: const EdgeInsets.only(
                         left: 25.0, top: 20, right: 25, bottom: 20),
                     child: Container(
-                      height: MediaQuery.of(context).size.height * .2,
+                      height: MediaQuery.of(context).size.height * .18,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: <Widget>[
-                              Text(
-                                'Training Video',
-                                style: TextStyle(
-                                  fontFamily: 'robotoBlack',
-                                  color: Colors.black,
-                                  fontSize: 17,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  'Training Video',
+                                  style: TextStyle(
+                                    fontFamily: 'robotoBlack',
+                                    color: Colors.black,
+                                    fontSize: 17,
+                                  ),
                                 ),
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: <Widget>[
-                                  Text(
-                                    'More',
-                                    style: TextStyle(
-                                      color: Colors.grey[600],
-                                      fontFamily: 'robotoReg',
-                                    ),
-                                  ),
-                                  Padding(
-                                      padding:
-                                          EdgeInsets.symmetric(horizontal: 3)),
-                                  Icon(
-                                    Icons.arrow_forward_ios,
-                                    color: Colors.grey[700],
-                                    size: 15,
-                                  ),
-                                ],
-                              )
-                            ],
-                          ),
+                              ]),
                           Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
                                   topRight: Radius.circular(25),
                                   bottomLeft: Radius.circular(25),
-                                  bottomRight: Radius.circular(25)),
+                                  bottomRight: Radius.circular(25),
+                                  topLeft: Radius.circular(25)),
                               color: Color(0XFFEBEBF1),
                             ),
-                            height: MediaQuery.of(context).size.height * .165,
+                            height: MediaQuery.of(context).size.height * .14,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        .07,
+                                    width: MediaQuery.of(context).size.height *
+                                        .07,
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: Color(0XFF5BC0DE),
+                                    ),
+                                    child: Icon(
+                                      FontAwesomeIcons.video,
+                                      color: Colors.white,
+                                      size: 28,
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * .14,
+                                  width: MediaQuery.of(context).size.width * .5,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 10.0),
+                                        child: Text(
+                                          "Safety and Health topics",
+                                          style: GoogleFonts.roboto(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16,
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        "Watch videos to get the latest safety mesures about this pandemic",
+                                        style: GoogleFonts.roboto(
+                                          color: Colors.grey[500],
+                                          fontSize: 13,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  alignment: Alignment.center,
+                                  height:
+                                      MediaQuery.of(context).size.height * .14,
+                                  width:
+                                      MediaQuery.of(context).size.height * .08,
+                                  child: Icon(
+                                    FontAwesomeIcons.externalLinkAlt,
+                                    color: Colors.grey[500],
+                                  ),
+                                )
+                              ],
+                            ),
                           ),
                         ],
                       ),
