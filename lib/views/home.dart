@@ -50,8 +50,24 @@ class _HomeState extends State<Home> {
         ? Scaffold(
             backgroundColor: Color(0XFFffffc4),
             body: Center(
-              child: CircularProgressIndicator(
-                valueColor: AlwaysStoppedAnimation(Color(0XFF5BC0DE)),
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      "Coronavirus\nTracker",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.righteous(
+                        fontSize: 25,
+                      ),
+                    ),
+                    Padding(padding: EdgeInsets.all(15)),
+                    CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(Color(0XFF5BC0DE)),
+                    ),
+                  ],
+                ),
               ),
             ),
           )
@@ -101,10 +117,11 @@ class _HomeState extends State<Home> {
                                   ),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(left: 20.0),
+                                  padding: const EdgeInsets.only(
+                                      left: 20.0, top: 15),
                                   child: Text(
                                     "#WeCanDefeatCoronavirus",
-                                    style: GoogleFonts.anton(
+                                    style: GoogleFonts.righteous(
                                       fontSize: 23,
                                     ),
                                   ),
@@ -120,7 +137,9 @@ class _HomeState extends State<Home> {
                                 padding: const EdgeInsets.only(bottom: 35.0),
                                 child: Text(
                                   "Stay Safe\nStay at home",
-                                  style: GoogleFonts.quicksand(fontSize: 17),
+                                  style: GoogleFonts.quicksand(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w500),
                                 ),
                               ),
                               Container(
