@@ -1,22 +1,19 @@
 class Article {
-  final int confirmed;
+  final int affected;
   final int deaths;
   final int recovered;
-  final String date;
+  final int serious;
+  final int active;
+  final int tdydeaths;
+  final int tdycases;
 
   Article({
-    this.confirmed,
+    this.affected,
     this.deaths,
     this.recovered,
-    this.date,
+    this.serious,
+    this.active,
+    this.tdydeaths,
+    this.tdycases,
   });
-
-  factory Article.fromMap(Map<String, dynamic> map) {
-    return Article(
-      confirmed: map['Confirmed'],
-      deaths: map['Deaths'],
-      recovered: map['Recovered'],
-      date: map['Date'],
-    );
-  }
 }

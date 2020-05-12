@@ -1,19 +1,30 @@
-import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 import '../models/article.dart';
 
 class ApiService {
-  Future<List<Article>> fetchArticles() async {
+  var jsonWorldWide;
+
+  Future<Article> fetchArticles() async {
     try {
-      var response = await http.get(
-          'https://api.covid19api.com/live/country/algeria/status/confirmed');
-      List<dynamic> data = json.decode(response.body);
-      List<Article> articles = [];
-      data.forEach(
-        (articleMap) => articles.add(Article.fromMap(articleMap)),
-      );
-      return articles;
+      String worldWideUrl = 'https://corona.lmao.ninja/v2/all';
+      http.Response response = await http.get(worldWideUrl);
+      if (response.statusCode == 200) {
+        jsonWorldWide = convert.jsonDecode(response.body);
+        //print('$jsonWorldWide');
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+      Article art = new Article(
+          affected: jsonWorldWide['cases'],
+          deaths: jsonWorldWide['deaths'],
+          recovered: jsonWorldWide['recovered'],
+          active: jsonWorldWide['active'],
+          serious: jsonWorldWide['critical'],
+          tdydeaths: jsonWorldWide['todayDeaths'],
+          tdycases: jsonWorldWide['todayCases']);
+      return art;
     } catch (err) {
       throw err.toString();
     }

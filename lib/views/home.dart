@@ -1,4 +1,4 @@
-import 'package:fcharts/fcharts.dart';
+//import 'package:fcharts/fcharts.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,7 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Article> _articles = [];
+  Article _articles = new Article();
 
   static const myData = [
     ["data", "12"],
@@ -30,9 +30,9 @@ class _HomeState extends State<Home> {
   bool isLoding = true;
 
   _fetchArticles() async {
-    List<Article> articles = await ApiService().fetchArticles();
+    Article wwarticles = await ApiService().fetchArticles();
     setState(() {
-      _articles = articles;
+      _articles = wwarticles;
       isLoding = false;
       //if (_articles.length != 0) {}
     });
@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return isLoding == true || _articles.length == 0
+    return isLoding == true || _articles == null
         ? Scaffold(
             backgroundColor: Color(0XFFffffc4),
             body: Center(
@@ -652,6 +652,7 @@ class _HomeState extends State<Home> {
                                     ),
                                   ),
                                   Container(
+                                      /*
                                     height:
                                         MediaQuery.of(context).size.height * .3,
                                     child: LineChart(
@@ -679,7 +680,8 @@ class _HomeState extends State<Home> {
                                       chartPadding: new EdgeInsets.fromLTRB(
                                           30.0, 10.0, 10.0, 30.0),
                                     ),
-                                  )
+                                    */
+                                      )
                                 ]),
                           ),
                         ),
