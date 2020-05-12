@@ -3,7 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../models/article.dart';
+import '../models/chart.dart';
 import '../services/api_service.dart';
+import '../widgets/charts.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -15,6 +17,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   TabController _tabController;
   Article _articlew = new Article();
+  List<Chart> data = [];
+
+  Color scndBack = Color(0XFF4B6592);
+  Color frstBack = Colors.white;
+  Color frstText = Color(0XFF1e3c72);
+  Color scndText = Colors.white;
 
   bool isLoding = true;
 
@@ -26,11 +34,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
     });
   }
 
+  _fetchChart() async {
+    List<Chart> _data = await ApiService().fetchChart;
+    setState(() {
+      data = _data;
+      isLoding = false;
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     _tabController = new TabController(length: 2, vsync: this);
     _fetchArticles();
+    _fetchChart();
   }
 
   Widget buildBar() {
@@ -40,28 +57,82 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Container(
-                width: 25,
-                height: 40,
-                child: Icon(
-                  FontAwesomeIcons.bars,
-                  color: Colors.white,
-                ),
+              Row(
+                children: <Widget>[
+                  Container(
+                    width: 45,
+                    height: 45,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        width: 2,
+                        color: Colors.white,
+                      ),
+                    ),
+                    child: Container(
+                        width: 40,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              width: 2,
+                              color: Color(0XFF1e3c72),
+                            ),
+                            image: DecorationImage(
+                              fit: BoxFit.cover,
+                              image: AssetImage(
+                                "assets/me.png",
+                              ),
+                            ))),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(
+                    "Meet The Developer",
+                    style: GoogleFonts.lato(
+                      fontSize: 13,
+                      color: Colors.white,
+                    ),
+                  )
+                ],
               ),
               Container(
-                width: 25,
-                height: 40,
-                child: Icon(
-                  FontAwesomeIcons.bell,
-                  color: Colors.white,
-                ),
-              ),
+                  alignment: Alignment.center,
+                  width: MediaQuery.of(context).size.width * .25,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "Algeria",
+                        style: GoogleFonts.lato(
+                          fontSize: 14,
+                          color: Color(0XFF1e3c72),
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 4,
+                      ),
+                      Icon(
+                        FontAwesomeIcons.sort,
+                        color: Color(0XFF1e3c72),
+                        size: 17,
+                      )
+                    ],
+                  )),
             ]));
   }
 
   @override
   Widget build(BuildContext context) {
-    return isLoding == true || _articlew == null
+    return isLoding == true || _articlew == null || data.length == 0
         ? Scaffold(
             backgroundColor: Color(0XFF1e3c72),
             body: Center(
@@ -82,6 +153,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                     CircularProgressIndicator(
                       valueColor: AlwaysStoppedAnimation(Colors.white),
                     ),
+                    Padding(padding: EdgeInsets.all(15)),
+                    Text(
+                      "Connecting",
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.lato(
+                        fontSize: 16,
+                        color: Colors.grey[200],
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -99,21 +179,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: <Widget>[
                         Text(
-                          "COVID-19",
-                          style: GoogleFonts.roboto(
+                          "Covid-19",
+                          style: GoogleFonts.lato(
                             color: Colors.white,
-                            fontWeight: FontWeight.w500,
+                            fontWeight: FontWeight.w600,
                             fontSize: 25,
                           ),
                         ),
                         SizedBox(
-                          width: 5,
+                          width: 6,
                         ),
                         Text(
                           "statistics",
-                          style: GoogleFonts.roboto(
+                          style: GoogleFonts.lato(
                             color: Colors.white,
-                            fontSize: 21,
+                            fontSize: 20,
                           ),
                         ),
                       ],
@@ -135,38 +215,58 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       children: <Widget>[
                         Padding(
                           padding: const EdgeInsets.only(left: 7.5),
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: MediaQuery.of(context).size.width * .4,
-                            height: 55,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(80),
-                            ),
-                            child: Text(
-                              "Global",
-                              style: GoogleFonts.roboto(
-                                color: Color(0XFF1e3c72),
-                                fontWeight: FontWeight.bold,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                frstBack = Colors.white;
+                                frstText = Color(0XFF1e3c72);
+                                scndBack = Color(0XFF4B6592);
+                                scndText = Colors.white;
+                              });
+                            },
+                            child: Container(
+                              alignment: Alignment.center,
+                              width: MediaQuery.of(context).size.width * .4,
+                              height: 55,
+                              decoration: BoxDecoration(
+                                color: frstBack,
+                                borderRadius: BorderRadius.circular(80),
+                              ),
+                              child: Text(
+                                "Global",
+                                style: GoogleFonts.lato(
+                                  color: frstText,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(right: 7.5),
-                          child: Container(
-                            width: MediaQuery.of(context).size.width * .4,
-                            height: 55,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              //color: Colors.white,
-                              borderRadius: BorderRadius.circular(80),
-                            ),
-                            child: Text(
-                              "My Country",
-                              style: GoogleFonts.roboto(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
+                          child: GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                scndBack = Colors.white;
+                                scndText = Color(0XFF1e3c72);
+                                frstBack = Color(0XFF4B6592);
+                                frstText = Colors.white;
+                              });
+                            },
+                            child: Container(
+                              width: MediaQuery.of(context).size.width * .4,
+                              height: 55,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                color: scndBack,
+                                borderRadius: BorderRadius.circular(80),
+                              ),
+                              child: Text(
+                                "My Country",
+                                style: GoogleFonts.lato(
+                                  color: scndText,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
@@ -184,7 +284,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           EdgeInsets.symmetric(horizontal: 25, vertical: 10),
                       indicatorColor: Color(0XFF3D84A8),
                       unselectedLabelStyle: TextStyle(
-                        fontWeight: FontWeight.normal,
+                        fontWeight: FontWeight.w100,
                         fontSize: 14,
                       ),
                       labelStyle: TextStyle(
@@ -195,9 +295,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       tabs: <Widget>[
                         Text(
                           'Total',
+                          style: GoogleFonts.lato(),
                         ),
                         Text(
                           'Today',
+                          style: GoogleFonts.lato(),
                         ),
                       ],
                       controller: _tabController,
@@ -241,10 +343,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         children: <Widget>[
                                           Text(
                                             "Affected",
-                                            style: GoogleFonts.roboto(
+                                            style: GoogleFonts.lato(
                                               color: Colors.white,
                                               fontSize: 15,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                           Text(
@@ -285,10 +387,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         children: <Widget>[
                                           Text(
                                             "Death",
-                                            style: GoogleFonts.roboto(
+                                            style: GoogleFonts.lato(
                                               color: Colors.white,
                                               fontSize: 15,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                           Text(
@@ -340,10 +442,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         children: <Widget>[
                                           Text(
                                             "Recovered",
-                                            style: GoogleFonts.roboto(
+                                            style: GoogleFonts.lato(
                                               color: Colors.white,
                                               fontSize: 14,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                           Text(
@@ -384,10 +486,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         children: <Widget>[
                                           Text(
                                             "Active",
-                                            style: GoogleFonts.roboto(
+                                            style: GoogleFonts.lato(
                                               color: Colors.white,
                                               fontSize: 14,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                           Text(
@@ -428,10 +530,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         children: <Widget>[
                                           Text(
                                             "Serious",
-                                            style: GoogleFonts.roboto(
+                                            style: GoogleFonts.lato(
                                               color: Colors.white,
                                               fontSize: 14,
-                                              fontWeight: FontWeight.w500,
+                                              fontWeight: FontWeight.w600,
                                             ),
                                           ),
                                           Text(
@@ -484,10 +586,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   children: <Widget>[
                                     Text(
                                       "Affected",
-                                      style: GoogleFonts.roboto(
+                                      style: GoogleFonts.lato(
                                         color: Colors.white,
                                         fontSize: 17,
-                                        fontWeight: FontWeight.w500,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                     Text(
@@ -525,10 +627,10 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   children: <Widget>[
                                     Text(
                                       "Death",
-                                      style: GoogleFonts.roboto(
+                                      style: GoogleFonts.lato(
                                         color: Colors.white,
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.w500,
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.w600,
                                       ),
                                     ),
                                     Text(
@@ -558,14 +660,46 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 SizedBox(
                   height: 15,
                 ),
+                /*
+                white square starts here
+                */
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * .4,
+                  height: MediaQuery.of(context).size.height * .45,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(50),
                         topRight: Radius.circular(50)),
+                  ),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: EdgeInsets.only(left: 25, right: 20, top: 30),
+                        child: Container(
+                          child: Text(
+                            "Daily New Cases",
+                            style: GoogleFonts.lato(
+                              color: Color(0XFF1e3c72),
+                              fontSize: 21,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          ),
+                        ),
+                      ),
+                      //-----------------
+                      Padding(
+                        padding: EdgeInsets.only(left: 20, right: 20, top: 15),
+                        child: Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: MediaQuery.of(context).size.height * .3,
+                          child: Charts(
+                            data: data,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 )
               ],

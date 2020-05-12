@@ -6,6 +6,7 @@ class Article {
   final int active;
   final int tdydeaths;
   final int tdycases;
+  final int tests;
 
   Article({
     this.affected,
@@ -15,5 +16,6 @@ class Article {
     this.active,
     this.tdydeaths,
     this.tdycases,
+    this.tests,
   });
 }
