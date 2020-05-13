@@ -33,6 +33,58 @@ class ApiService {
     }
   }
 
+  Future<List<Chart>> get fetchChart2 async {
+    try {
+      String history = 'https://disease.sh/v2/historical/all?lastdays=8';
+      List<dynamic> cases = [];
+      List<dynamic> dates = [];
+      List<Chart> data = [];
+
+      http.Response response = await http.get(history);
+      if (response.statusCode == 200) {
+        jsonData = convert.jsonDecode(response.body);
+        cases = jsonData['deaths'].values.toList();
+        dates = jsonData['deaths'].keys.toList();
+
+        for (var i = 0; i < cases.length; i++) {
+          Chart c = new Chart(cases[i], dates[i].toString());
+          data.add(c);
+        }
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+      return data;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<List<Chart>> get fetchChart3 async {
+    try {
+      String history = 'https://disease.sh/v2/historical/all?lastdays=8';
+      List<dynamic> cases = [];
+      List<dynamic> dates = [];
+      List<Chart> data = [];
+
+      http.Response response = await http.get(history);
+      if (response.statusCode == 200) {
+        jsonData = convert.jsonDecode(response.body);
+        cases = jsonData['recovered'].values.toList();
+        dates = jsonData['recovered'].keys.toList();
+
+        for (var i = 0; i < cases.length; i++) {
+          Chart c = new Chart(cases[i], dates[i].toString());
+          data.add(c);
+        }
+      } else {
+        print('Request failed with status: ${response.statusCode}.');
+      }
+      return data;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
   Future<Article> fetchArticles() async {
     try {
       String worldWideUrl = 'https://corona.lmao.ninja/v2/all';
@@ -47,7 +99,6 @@ class ApiService {
         deaths: jsonWorldWide['deaths'],
         recovered: jsonWorldWide['recovered'],
         active: jsonWorldWide['active'],
-        serious: jsonWorldWide['critical'],
         tdydeaths: jsonWorldWide['todayDeaths'],
         tdycases: jsonWorldWide['todayCases'],
         tests: jsonWorldWide['tests'],

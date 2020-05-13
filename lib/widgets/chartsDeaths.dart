@@ -3,15 +3,15 @@ import 'package:charts_flutter/flutter.dart' as charts;
 
 import '../models/chart.dart';
 
-class Charts extends StatefulWidget {
+class ChartsD extends StatefulWidget {
   final List<Chart> data;
-  Charts({Key key, this.data}) : super(key: key);
+  ChartsD({Key key, this.data}) : super(key: key);
 
   @override
-  _ChartsState createState() => _ChartsState();
+  _ChartsDState createState() => _ChartsDState();
 }
 
-class _ChartsState extends State<Charts> {
+class _ChartsDState extends State<ChartsD> {
   @override
   Widget build(BuildContext context) {
     List<charts.Series<Chart, String>> series = [
@@ -21,7 +21,7 @@ class _ChartsState extends State<Charts> {
         domainFn: (Chart series, _) => series.date,
         measureFn: (Chart series, _) => series.cases,
         colorFn: (Chart series, _) =>
-            charts.ColorUtil.fromDartColor(Color(0XFFFFB259)),
+            charts.ColorUtil.fromDartColor(Color(0XFFf7797d)),
       )
     ];
 
