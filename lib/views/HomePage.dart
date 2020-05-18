@@ -3,11 +3,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../models/article.dart';
-import '../models/chart.dart';
+//import '../models/chart.dart';
 import '../services/api_service.dart';
-import '../widgets/charts.dart';
-import '../widgets/chartsDeaths.dart';
-import '../widgets/chartsRec.dart';
+//import '../widgets/charts.dart';
+//import '../widgets/chartsDeaths.dart';
+//import '../widgets/chartsRec.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -18,11 +18,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   TabController _tabController;
-  TabController _tabController2;
+  //TabController _tabController2;
   Article _articlew = new Article();
+  /*
   List<Chart> data = [];
   List<Chart> data2 = [];
   List<Chart> data3 = [];
+  */
 
   Color scndBack = Color(0XFF4B6592);
   Color frstBack = Colors.white;
@@ -31,14 +33,15 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   bool isLoding = true;
 
-  _fetchArticles() async {
-    Article articleW = await ApiService().fetchArticles();
+  _fetchArticles(bool choix) async {
+    Article articleW = await ApiService().fetchArticles(choix);
     setState(() {
       _articlew = articleW;
       isLoding = false;
     });
   }
 
+  /*
   _fetchChart() async {
     List<Chart> _data = await ApiService().fetchChart;
     setState(() {
@@ -62,16 +65,19 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       isLoding = false;
     });
   }
+  */
 
   @override
   void initState() {
     super.initState();
     _tabController = new TabController(length: 2, vsync: this);
-    _tabController2 = new TabController(length: 3, vsync: this);
-    _fetchArticles();
+    //_tabController2 = new TabController(length: 3, vsync: this);
+    _fetchArticles(true);
+    /*
     _fetchChart();
     _fetchChartR();
     _fetchChartD();
+    */
   }
 
   Widget buildBar() {
@@ -156,7 +162,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return isLoding == true || _articlew == null || data.length == 0
+    return isLoding == true || _articlew == null //|| data.length == 0
         ? Scaffold(
             backgroundColor: Color(0XFF1e3c72),
             body: Center(
@@ -249,6 +255,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 frstText = Color(0XFF1e3c72);
                                 scndBack = Color(0XFF4B6592);
                                 scndText = Colors.white;
+                                _fetchArticles(true);
                               });
                             },
                             child: Container(
@@ -278,6 +285,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                 scndText = Color(0XFF1e3c72);
                                 frstBack = Color(0XFF4B6592);
                                 frstText = Colors.white;
+                                _fetchArticles(false);
                               });
                             },
                             child: Container(
@@ -691,14 +699,103 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 white square starts here
                 */
                 Container(
+                  alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * .60,
+                  height: MediaQuery.of(context).size.height * .29,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(50),
                         topRight: Radius.circular(50)),
                   ),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height * .25,
+                    child: Stack(
+                      alignment: Alignment.centerLeft,
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.all(30.0),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * .16,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(colors: [
+                                Color(0XFF4B6592),
+                                Color(0XFF1e3c72),
+                              ]),
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: <Widget>[
+                                Container(
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: <Widget>[
+                                      Text(
+                                        "Do your own test!",
+                                        style: GoogleFonts.lato(
+                                          color: Colors.white,
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: 7,
+                                      ),
+                                      Text(
+                                        "Watch videos and learn\nmore about the virus",
+                                        style: GoogleFonts.lato(
+                                          color: Colors.white,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.w300,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                                Container(
+                                  width: 70,
+                                  height: 70,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: Colors.white,
+                                  ),
+                                  child: Icon(
+                                    FontAwesomeIcons.shieldVirus,
+                                    color: Color(0XFF4B6592),
+                                    size: 40,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 15,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 25.0),
+                          child: Container(
+                            height: MediaQuery.of(context).size.height * .23,
+                            width: MediaQuery.of(context).size.width * .28,
+                            child: Image.asset(
+                              'assets/doc.png',
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  /*
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
@@ -776,7 +873,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               ),
                               Padding(
                                 padding: EdgeInsets.only(
-                                    left: 20, right: 20, top: 15),
+                                    left: 20, right: 20, top: 15, bottom: 5),
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
                                   height:
@@ -788,7 +885,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                               ),
                               Padding(
                                 padding: EdgeInsets.only(
-                                    left: 20, right: 20, top: 15),
+                                    left: 20, right: 20, top: 15, bottom: 5),
                                 child: Container(
                                   width: MediaQuery.of(context).size.width,
                                   height:
@@ -803,6 +900,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       //-----------------
                     ],
                   ),
+                  */
                 )
               ],
             ),

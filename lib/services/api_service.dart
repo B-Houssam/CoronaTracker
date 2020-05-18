@@ -7,6 +7,7 @@ import '../models/chart.dart';
 class ApiService {
   var jsonWorldWide;
   var jsonData;
+
   Future<List<Chart>> get fetchChart async {
     try {
       String history = 'https://disease.sh/v2/historical/all?lastdays=8';
@@ -85,27 +86,51 @@ class ApiService {
     }
   }
 
-  Future<Article> fetchArticles() async {
-    try {
-      String worldWideUrl = 'https://corona.lmao.ninja/v2/all';
-      http.Response response = await http.get(worldWideUrl);
-      if (response.statusCode == 200) {
-        jsonWorldWide = convert.jsonDecode(response.body);
-      } else {
-        print('Request failed with status: ${response.statusCode}.');
+  Future<Article> fetchArticles(bool choise) async {
+    if (choise) {
+      try {
+        String worldWideUrl = 'https://corona.lmao.ninja/v2/all';
+        http.Response response = await http.get(worldWideUrl);
+        if (response.statusCode == 200) {
+          jsonWorldWide = convert.jsonDecode(response.body);
+        } else {
+          print('Request failed with status: ${response.statusCode}.');
+        }
+        Article art = new Article(
+          affected: jsonWorldWide['cases'],
+          deaths: jsonWorldWide['deaths'],
+          recovered: jsonWorldWide['recovered'],
+          active: jsonWorldWide['active'],
+          tdydeaths: jsonWorldWide['todayDeaths'],
+          tdycases: jsonWorldWide['todayCases'],
+          tests: jsonWorldWide['tests'],
+        );
+        return art;
+      } catch (err) {
+        throw err.toString();
       }
-      Article art = new Article(
-        affected: jsonWorldWide['cases'],
-        deaths: jsonWorldWide['deaths'],
-        recovered: jsonWorldWide['recovered'],
-        active: jsonWorldWide['active'],
-        tdydeaths: jsonWorldWide['todayDeaths'],
-        tdycases: jsonWorldWide['todayCases'],
-        tests: jsonWorldWide['tests'],
-      );
-      return art;
-    } catch (err) {
-      throw err.toString();
+    } else {
+      try {
+        String worldWideUrl = 'https://corona.lmao.ninja/v2/countries/Algeria';
+        http.Response response = await http.get(worldWideUrl);
+        if (response.statusCode == 200) {
+          jsonWorldWide = convert.jsonDecode(response.body);
+        } else {
+          print('Request failed with status: ${response.statusCode}.');
+        }
+        Article art = new Article(
+          affected: jsonWorldWide['cases'],
+          deaths: jsonWorldWide['deaths'],
+          recovered: jsonWorldWide['recovered'],
+          active: jsonWorldWide['active'],
+          tdydeaths: jsonWorldWide['todayDeaths'],
+          tdycases: jsonWorldWide['todayCases'],
+          tests: jsonWorldWide['tests'],
+        );
+        return art;
+      } catch (err) {
+        throw err.toString();
+      }
     }
   }
 }
