@@ -133,12 +133,20 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                   height: 40,
                   decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(20),
+                    borderRadius: BorderRadius.circular(30),
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
+                      Icon(
+                        FontAwesomeIcons.sort,
+                        color: Color(0XFF1e3c72),
+                        size: 17,
+                      ),
+                      SizedBox(
+                        width: 4,
+                      ),
                       Text(
                         "Algeria",
                         style: GoogleFonts.lato(
@@ -147,14 +155,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                           fontWeight: FontWeight.w600,
                         ),
                       ),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Icon(
-                        FontAwesomeIcons.sort,
-                        color: Color(0XFF1e3c72),
-                        size: 17,
-                      )
                     ],
                   )),
             ]));
@@ -364,7 +364,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                     width:
                                         MediaQuery.of(context).size.width * .43,
                                     decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(15),
+                                      borderRadius: BorderRadius.circular(12),
                                       color: Color(0XFFFFB259),
                                     ),
                                     child: Padding(
@@ -409,7 +409,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         MediaQuery.of(context).size.width * .43,
                                     decoration: BoxDecoration(
                                       color: Color(0XFFFF5959),
-                                      borderRadius: BorderRadius.circular(15),
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Padding(
                                       padding:
@@ -464,7 +464,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         MediaQuery.of(context).size.width * .28,
                                     decoration: BoxDecoration(
                                       color: Colors.greenAccent,
-                                      borderRadius: BorderRadius.circular(15),
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Padding(
                                       padding:
@@ -508,7 +508,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         MediaQuery.of(context).size.width * .28,
                                     decoration: BoxDecoration(
                                       color: Colors.cyan[300],
-                                      borderRadius: BorderRadius.circular(15),
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Padding(
                                       padding:
@@ -552,7 +552,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                         MediaQuery.of(context).size.width * .28,
                                     decoration: BoxDecoration(
                                       color: Color(0XFF9059FF),
-                                      borderRadius: BorderRadius.circular(15),
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
                                     child: Padding(
                                       padding:
@@ -609,7 +609,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   MediaQuery.of(context).size.height * .31 - 22,
                               width: MediaQuery.of(context).size.width * .43,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(12),
                                 color: Color(0XFFFFB259),
                               ),
                               child: Padding(
@@ -650,7 +650,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                   MediaQuery.of(context).size.height * .31 - 22,
                               width: MediaQuery.of(context).size.width * .43,
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
+                                borderRadius: BorderRadius.circular(12),
                                 color: Color(0XFFFF5959),
                               ),
                               child: Padding(

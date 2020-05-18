@@ -7,13 +7,12 @@ class Article {
   final int tdycases;
   final int tests;
 
-  Article({
-    this.affected,
-    this.deaths,
-    this.recovered,
-    this.active,
-    this.tdydeaths,
-    this.tdycases,
-    this.tests,
-  });
+  Article(
+      {this.affected,
+      this.deaths,
+      this.recovered,
+      this.active,
+      this.tdydeaths,
+      this.tdycases,
+      this.tests});
 }

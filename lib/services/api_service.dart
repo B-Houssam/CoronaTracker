@@ -2,12 +2,13 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 
 import '../models/article.dart';
-import '../models/chart.dart';
+//import '../models/chart.dart';
 
 class ApiService {
   var jsonWorldWide;
   var jsonData;
 
+/*
   Future<List<Chart>> get fetchChart async {
     try {
       String history = 'https://disease.sh/v2/historical/all?lastdays=8';
@@ -85,7 +86,7 @@ class ApiService {
       throw e.toString();
     }
   }
-
+*/
   Future<Article> fetchArticles(bool choise) async {
     if (choise) {
       try {
