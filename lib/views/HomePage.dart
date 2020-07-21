@@ -3,11 +3,9 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../models/article.dart';
-//import '../models/chart.dart';
 import '../services/api_service.dart';
-//import '../widgets/charts.dart';
-//import '../widgets/chartsDeaths.dart';
-//import '../widgets/chartsRec.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_country_picker/flutter_country_picker.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key}) : super(key: key);
@@ -18,13 +16,9 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   TabController _tabController;
-  //TabController _tabController2;
   Article _articlew = new Article();
-  /*
-  List<Chart> data = [];
-  List<Chart> data2 = [];
-  List<Chart> data3 = [];
-  */
+
+  var _ctName = "USA";
 
   Color scndBack = Color(0XFF4B6592);
   Color frstBack = Colors.white;
@@ -33,51 +27,21 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
   bool isLoding = true;
 
+  Country _selected;
+
   _fetchArticles(bool choix) async {
-    Article articleW = await ApiService().fetchArticles(choix);
+    Article articleW = await ApiService().fetchArticles(choix, _ctName);
     setState(() {
       _articlew = articleW;
       isLoding = false;
     });
   }
 
-  /*
-  _fetchChart() async {
-    List<Chart> _data = await ApiService().fetchChart;
-    setState(() {
-      data = _data;
-      isLoding = false;
-    });
-  }
-
-  _fetchChartD() async {
-    List<Chart> _data2 = await ApiService().fetchChart2;
-    setState(() {
-      data2 = _data2;
-      isLoding = false;
-    });
-  }
-
-  _fetchChartR() async {
-    List<Chart> _data3 = await ApiService().fetchChart3;
-    setState(() {
-      data3 = _data3;
-      isLoding = false;
-    });
-  }
-  */
-
   @override
   void initState() {
     super.initState();
     _tabController = new TabController(length: 2, vsync: this);
-    //_tabController2 = new TabController(length: 3, vsync: this);
     _fetchArticles(true);
-    /*
-    _fetchChart();
-    _fetchChartR();
-    _fetchChartD();
-    */
   }
 
   Widget buildBar() {
@@ -89,37 +53,42 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
             children: <Widget>[
               Row(
                 children: <Widget>[
-                  Container(
-                    width: 45,
-                    height: 45,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        width: 2,
-                        color: Colors.white,
-                      ),
-                    ),
+                  GestureDetector(
+                    onTap: () {
+                      launch('https://www.github.com/B-Houssam');
+                    },
                     child: Container(
-                        width: 40,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                              width: 2,
-                              color: Color(0XFF1e3c72),
-                            ),
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage(
-                                "assets/me.png",
+                      width: 45,
+                      height: 45,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          width: 2,
+                          color: Colors.white,
+                        ),
+                      ),
+                      child: Container(
+                          width: 40,
+                          height: 40,
+                          decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              border: Border.all(
+                                width: 2,
+                                color: Color(0XFF1e3c72),
                               ),
-                            ))),
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: AssetImage(
+                                  "assets/me.png",
+                                ),
+                              ))),
+                    ),
                   ),
                   SizedBox(
                     width: 10,
                   ),
                   Text(
-                    "Meet The Developer",
+                    "Visit me on Github",
                     style: GoogleFonts.lato(
                       fontSize: 13,
                       color: Colors.white,
@@ -128,35 +97,34 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ],
               ),
               Container(
-                  alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width * .25,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(30),
+                width: MediaQuery.of(context).size.width * .35,
+                height: MediaQuery.of(context).size.height * .055,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: CountryPicker(
+                  nameTextStyle: GoogleFonts.lato(
+                    color: Color(0XFF1e3c72),
+                    fontWeight: FontWeight.w700,
                   ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        FontAwesomeIcons.sort,
-                        color: Color(0XFF1e3c72),
-                        size: 17,
-                      ),
-                      SizedBox(
-                        width: 4,
-                      ),
-                      Text(
-                        "Algeria",
-                        style: GoogleFonts.lato(
-                          fontSize: 14,
-                          color: Color(0XFF1e3c72),
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ],
-                  )),
+                  dense: false,
+                  showCurrency: false,
+                  showCurrencyISO: false,
+                  onChanged: (Country country) {
+                    setState(() {
+                      _ctName = country.name;
+                      _fetchArticles(false);
+                      scndBack = Colors.white;
+                      scndText = Color(0XFF1e3c72);
+                      frstBack = Color(0XFF4B6592);
+                      frstText = Colors.white;
+                      _selected = country;
+                    });
+                  },
+                  selectedCountry: _selected,
+                ),
+              ),
             ]));
   }
 
@@ -203,31 +171,37 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               children: <Widget>[
                 buildBar(),
                 Padding(
-                  padding: const EdgeInsets.only(left: 25.0, top: 20),
+                  padding:
+                      const EdgeInsets.only(left: 25.0, top: 20, right: 30),
                   child: Container(
                     child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
-                        Text(
-                          "Covid-19",
-                          style: GoogleFonts.lato(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w600,
-                            fontSize: 25,
-                          ),
-                        ),
-                        SizedBox(
-                          width: 6,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 2.0),
-                          child: Text(
-                            "statistics",
-                            style: GoogleFonts.lato(
-                              color: Colors.white,
-                              fontSize: 20,
+                        Row(
+                          children: <Widget>[
+                            Text(
+                              "Covid-19",
+                              style: GoogleFonts.lato(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 25,
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              width: 6,
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 2.0),
+                              child: Text(
+                                "statistics",
+                                style: GoogleFonts.lato(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ],
                     ),
@@ -394,7 +368,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             style: GoogleFonts.sourceCodePro(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w700,
-                                              fontSize: 25,
+                                              fontSize: 23,
                                             ),
                                           ),
                                         ],
@@ -438,7 +412,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             style: GoogleFonts.sourceCodePro(
                                               color: Colors.white,
                                               fontWeight: FontWeight.w700,
-                                              fontSize: 25,
+                                              fontSize: 23,
                                             ),
                                           ),
                                         ],
@@ -461,7 +435,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             .15 -
                                         20,
                                     width:
-                                        MediaQuery.of(context).size.width * .28,
+                                        MediaQuery.of(context).size.width * .43,
                                     decoration: BoxDecoration(
                                       color: Colors.greenAccent,
                                       borderRadius: BorderRadius.circular(12),
@@ -505,7 +479,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                             .15 -
                                         20,
                                     width:
-                                        MediaQuery.of(context).size.width * .28,
+                                        MediaQuery.of(context).size.width * .43,
                                     decoration: BoxDecoration(
                                       color: Colors.cyan[300],
                                       borderRadius: BorderRadius.circular(12),
@@ -538,50 +512,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                                               color: Colors.white,
                                               fontWeight: FontWeight.w700,
                                               fontSize: 17,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  Container(
-                                    height: MediaQuery.of(context).size.height *
-                                            .15 -
-                                        20,
-                                    width:
-                                        MediaQuery.of(context).size.width * .28,
-                                    decoration: BoxDecoration(
-                                      color: Color(0XFF9059FF),
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                    child: Padding(
-                                      padding:
-                                          const EdgeInsets.only(left: 10.0),
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: <Widget>[
-                                          Text(
-                                            "Tests",
-                                            style: GoogleFonts.lato(
-                                              color: Colors.white,
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                          ),
-                                          Text(
-                                            _articlew.tests
-                                                .toString()
-                                                .replaceAllMapped(
-                                                    new RegExp(
-                                                        r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-                                                    (Match m) => '${m[1]},'),
-                                            style: GoogleFonts.sourceCodePro(
-                                              color: Colors.white,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: 15,
                                             ),
                                           ),
                                         ],
@@ -795,112 +725,6 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                       ],
                     ),
                   ),
-                  /*
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(
-                        padding: EdgeInsets.only(
-                            left: 25, right: 20, top: 30, bottom: 10),
-                        child: Container(
-                          child: Text(
-                            "8-Day Progression",
-                            style: GoogleFonts.lato(
-                              color: Color(0XFF1e3c72),
-                              fontSize: 21,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      ),
-                      //-----------------
-                      Container(
-                          alignment: Alignment.center,
-                          height: 50,
-                          width: MediaQuery.of(context).size.width,
-                          child: TabBar(
-                            labelPadding: EdgeInsets.symmetric(
-                                horizontal: 25, vertical: 10),
-                            indicatorColor: Color(0XFF3D84A8),
-                            unselectedLabelStyle: TextStyle(
-                              fontWeight: FontWeight.w100,
-                              fontSize: 13,
-                            ),
-                            labelStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 17,
-                            ),
-                            isScrollable: true,
-                            tabs: <Widget>[
-                              Text(
-                                'Cases',
-                                style: GoogleFonts.lato(
-                                  color: Color(0XFF1e3c72),
-                                ),
-                              ),
-                              Text(
-                                'Deaths',
-                                style: GoogleFonts.lato(
-                                  color: Color(0XFF1e3c72),
-                                ),
-                              ),
-                              Text(
-                                'Recovered',
-                                style: GoogleFonts.lato(
-                                  color: Color(0XFF1e3c72),
-                                ),
-                              ),
-                            ],
-                            controller: _tabController2,
-                          )),
-                      Container(
-                          width: MediaQuery.of(context).size.width,
-                          height: MediaQuery.of(context).size.height * .31,
-                          child: TabBarView(
-                            controller: _tabController2,
-                            children: <Widget>[
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: 20, right: 20, top: 15, bottom: 5),
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height:
-                                      MediaQuery.of(context).size.height * .3,
-                                  child: Charts(
-                                    data: data,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: 20, right: 20, top: 15, bottom: 5),
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height:
-                                      MediaQuery.of(context).size.height * .3,
-                                  child: ChartsD(
-                                    data: data2,
-                                  ),
-                                ),
-                              ),
-                              Padding(
-                                padding: EdgeInsets.only(
-                                    left: 20, right: 20, top: 15, bottom: 5),
-                                child: Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  height:
-                                      MediaQuery.of(context).size.height * .3,
-                                  child: ChartsR(
-                                    data: data3,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )),
-                      //-----------------
-                    ],
-                  ),
-                  */
                 )
               ],
             ),
