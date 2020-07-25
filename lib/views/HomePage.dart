@@ -97,16 +97,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 ],
               ),
               Container(
-                width: MediaQuery.of(context).size.width * .35,
+                width: MediaQuery.of(context).size.width * .4,
                 height: MediaQuery.of(context).size.height * .055,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(15),
                 ),
+                padding: EdgeInsets.all(10),
                 child: CountryPicker(
                   nameTextStyle: GoogleFonts.lato(
                     color: Color(0XFF1e3c72),
                     fontWeight: FontWeight.w700,
+                    fontSize: 13,
                   ),
                   dense: false,
                   showCurrency: false,
