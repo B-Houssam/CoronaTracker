@@ -2,6 +2,9 @@
 
 A new Flutter project.
 
+using flutter i created a corona virus tracking app per country showing basic information as shown in the screens below.
+
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
