@@ -4,6 +4,7 @@ A new Flutter project.
 
 using flutter i created a corona virus tracking app per country showing basic information as shown in the screens below.
 
+### The app release is on " build/app/outputs/apk/release/app-release.apk "!
 
 ## Getting Started
 
